@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do App</title>
+</head>
+<script>
+  function onpress(){
+    function parsedresponse(data){
+      console.log(data);
+    }
+    function callback(resp){
+      resp.json().then(parsedresponse);
+    }
+    let newobj={
+      method:"Post",
+      body:JSON.stringify({
+        title:"GYM",
+        description:"go to gym from 7 to 8"
+      }),
+      headers:{
+        "Content-Type":"application/json"
+         
+      } 
+    }
+    fetch("http://localhost:3000/todos",newobj).then(callback);
+  }
+
+</script>
+<body>
+  to do title: <input type="title" placeholder="title">
+  
+  to do description: <input type="description" placeholder="description">
+  <br>
+  <button onclick="onpress()">Add</button>
+
+  
+</body>
+</html>
